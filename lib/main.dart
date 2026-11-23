@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'core/constants/asset_paths.dart';
-import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
-import 'core/theme/app_typography.dart';
+import 'core/widgets/app_shell.dart';
+import 'domain/models/dummy_data.dart';
+import 'features/auth/login_screen.dart';
+import 'features/goals/add_edit_goal_screen.dart';
+import 'features/goals/goal_details_screen.dart';
+import 'features/goals/goals_list_screen.dart';
+import 'features/namaz/namaz_screen.dart';
+import 'features/night_review/night_review_screen.dart';
+import 'features/plan/daily_plan_screen.dart';
+import 'features/plan/weekly_plan_screen.dart';
+import 'features/settings/notification_settings_screen.dart';
+import 'features/settings/profile_settings_screen.dart';
+import 'features/today/add_edit_task_screen.dart';
+import 'features/today/comments_bottom_sheet.dart';
+import 'features/today/task_details_screen.dart';
+import 'features/today/today_screen.dart';
+import 'features/user2/user2_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,309 +33,261 @@ class SavairaApp extends StatelessWidget {
       title: 'Savaira',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const Phase0TestScreen(),
+      home: const MainNavigationShellHost(),
     );
   }
 }
 
-/// Simple elegant test & splash screen proving the Phase 0 setup:
-/// - Theme colors, soft shadows, rounded shapes
-/// - Bundled typography (GreatVibes script, Nunito UI sans, Noto Naskh Arabic)
-/// - SVG illustrations (flower sprig, sun/cloud, delicate logo floral)
-/// - UI components (pastel icon tiles, pill buttons, status indicators)
-class Phase0TestScreen extends StatelessWidget {
-  const Phase0TestScreen({super.key});
+class MainNavigationShellHost extends StatefulWidget {
+  const MainNavigationShellHost({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.pageBackgroundGradient,
-        ),
-        child: SafeArea(
-          child: Stack(
-            children: [
-              // Decorative flower sprig at bottom-left (matching sidebar design)
-              Positioned(
-                bottom: 12,
-                left: 12,
-                child: Opacity(
-                  opacity: 0.85,
-                  child: SvgPicture.asset(
-                    AssetPaths.flowerSprig,
-                    width: 72,
-                    height: 86,
-                  ),
-                ),
-              ),
+  State<MainNavigationShellHost> createState() => _MainNavigationShellHostState();
+}
 
-              // Sun & Cloud illustration at top-right
-              Positioned(
-                top: 16,
-                right: 20,
-                child: SvgPicture.asset(
-                  AssetPaths.sunCloud,
-                  width: 68,
-                  height: 54,
-                ),
-              ),
+class _MainNavigationShellHostState extends State<MainNavigationShellHost> {
+  bool _isLoggedIn = true;
+  int _selectedTabIndex = 0;
+  bool _isUser2Locked = true;
 
-              // Main content
-              Center(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Savaira Logo Section
-                      SvgPicture.asset(
-                        AssetPaths.logoFlower,
-                        width: 32,
-                        height: 24,
-                      ),
-                      const SizedBox(height: 4),
-                      const Text(
-                        'Savaira',
-                        style: AppTypography.logoScript,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            width: 24,
-                            height: 1.2,
-                            color: AppColors.primaryBlue.withValues(alpha: 0.4),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 6),
-                            child: Icon(
-                              Icons.favorite,
-                              size: 13,
-                              color: AppColors.primaryBlue,
-                            ),
-                          ),
-                          Container(
-                            width: 24,
-                            height: 1.2,
-                            color: AppColors.primaryBlue.withValues(alpha: 0.4),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Private Daily Planner',
-                        style: AppTypography.caption.copyWith(
-                          letterSpacing: 1.2,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textMuted,
-                        ),
-                      ),
+  late List<GoalItem> _goals;
 
-                      const SizedBox(height: 28),
+  @override
+  void initState() {
+    super.initState();
+    _goals = List.from(DummyData.initialGoals);
+  }
 
-                      // Phase 0 Verification Card
-                      Container(
-                        padding: const EdgeInsets.all(22),
-                        decoration: BoxDecoration(
-                          color: AppColors.cardWhite,
-                          borderRadius: AppTheme.cardBorderRadius,
-                          boxShadow: AppTheme.cardShadow,
-                          border: Border.all(
-                            color: AppColors.borderSubtle.withValues(alpha: 0.6),
-                            width: 1,
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.doneGreenLight,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const Icon(
-                                        Icons.check_circle_rounded,
-                                        size: 14,
-                                        color: AppColors.doneGreen,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        'Phase 0 Ready',
-                                        style: AppTypography.caption.copyWith(
-                                          color: AppColors.doneGreenDark,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Spacer(),
-                                Text(
-                                  'v1.0.0 (com.savaira.app)',
-                                  style: AppTypography.caption.copyWith(
-                                    fontSize: 11,
-                                    color: AppColors.textLight,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              'System Setup Complete',
-                              style: AppTypography.heading3,
-                            ),
-                            const SizedBox(height: 6),
-                            const Text(
-                              'Theme tokens, bundled offline fonts, SVG illustrations, Riverpod state, and clean architecture packages are initialized.',
-                              style: AppTypography.bodyMuted,
-                            ),
-                            const SizedBox(height: 20),
-
-                            // Color Palette & Icon Tile Showcase
-                            const Text(
-                              'Sample Pastel Icon Tiles',
-                              style: AppTypography.caption,
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                _buildIconTile(
-                                  icon: Icons.menu_book_rounded,
-                                  bg: AppColors.pastelBlue,
-                                  fg: AppColors.iconBlue,
-                                  label: 'Read',
-                                ),
-                                _buildIconTile(
-                                  icon: Icons.laptop_mac_rounded,
-                                  bg: AppColors.pastelGreen,
-                                  fg: AppColors.iconGreen,
-                                  label: 'Code',
-                                ),
-                                _buildIconTile(
-                                  icon: Icons.fitness_center_rounded,
-                                  bg: AppColors.pastelOrange,
-                                  fg: AppColors.iconOrange,
-                                  label: 'Gym',
-                                ),
-                                _buildIconTile(
-                                  icon: Icons.local_cafe_rounded,
-                                  bg: AppColors.pastelPurple,
-                                  fg: AppColors.iconPurple,
-                                  label: 'Tea',
-                                ),
-                              ],
-                            ),
-
-                            const SizedBox(height: 18),
-
-                            // Arabic Font Test
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 10,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.primaryBlueLight,
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: const Column(
-                                children: [
-                                  Text(
-                                    'اللهم تقبل منا',
-                                    style: AppTypography.arabicDua,
-                                    textDirection: TextDirection.rtl,
-                                  ),
-                                  Text(
-                                    'May Allah accept our prayers',
-                                    style: AppTypography.caption,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 28),
-
-                      // Pill button test
-                      Container(
-                        width: double.infinity,
-                        height: 52,
-                        decoration: BoxDecoration(
-                          gradient: AppColors.primaryButtonGradient,
-                          borderRadius: AppTheme.pillBorderRadius,
-                          boxShadow: AppTheme.buttonShadow,
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: AppTheme.pillBorderRadius,
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.check_rounded, color: Colors.white, size: 20),
-                              SizedBox(width: 8),
-                              Text(
-                                'Phase 0 Verified',
-                                style: AppTypography.buttonPrimary,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+  void _navigateTo(Widget screen) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => screen),
     );
   }
 
-  Widget _buildIconTile({
-    required IconData icon,
-    required Color bg,
-    required Color fg,
-    required String label,
-  }) {
-    return Column(
-      children: [
-        Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-            color: bg,
-            borderRadius: AppTheme.tileBorderRadius,
-          ),
-          child: Icon(icon, color: fg, size: 24),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          label,
-          style: AppTypography.caption.copyWith(fontSize: 11),
-        ),
-      ],
+  @override
+  Widget build(BuildContext context) {
+    if (!_isLoggedIn) {
+      return LoginScreen(
+        onLoginSuccess: () {
+          setState(() {
+            _isLoggedIn = true;
+          });
+        },
+      );
+    }
+
+    final screens = [
+      // 0: Today Screen (S1)
+      TodayScreen(
+        onOpenNotifications: () {
+          _navigateTo(
+            NotificationSettingsScreen(
+              onBack: () => Navigator.pop(context),
+            ),
+          );
+        },
+        onOpenProfile: () {
+          _navigateTo(
+            ProfileSettingsScreen(
+              onBack: () => Navigator.pop(context),
+              onOpenNotificationSettings: () {
+                _navigateTo(
+                  NotificationSettingsScreen(
+                    onBack: () => Navigator.pop(context),
+                  ),
+                );
+              },
+              onLogout: () {
+                Navigator.pop(context);
+                setState(() {
+                  _isLoggedIn = false;
+                });
+              },
+            ),
+          );
+        },
+        onViewAllTasks: () {
+          _navigateTo(
+            DailyPlanScreen(
+              onBack: () => Navigator.pop(context),
+              onOpenTaskDetails: (task) {
+                _navigateTo(
+                  TaskDetailsScreen(
+                    task: task,
+                    onBack: () => Navigator.pop(context),
+                    onEdit: (t) {
+                      Navigator.pop(context);
+                      _navigateTo(
+                        AddEditTaskScreen(
+                          initialTask: t,
+                          onBack: () => Navigator.pop(context),
+                          onSave: (saved) {},
+                        ),
+                      );
+                    },
+                    onDelete: (t) {},
+                    onOpenComments: () {
+                      CommentsBottomSheet.show(context, task);
+                    },
+                  ),
+                );
+              },
+              onAddTask: () {
+                _navigateTo(
+                  AddEditTaskScreen(
+                    onBack: () => Navigator.pop(context),
+                    onSave: (saved) {},
+                  ),
+                );
+              },
+            ),
+          );
+        },
+        onOpenWeeklyPlan: () {
+          _navigateTo(
+            WeeklyPlanScreen(
+              onBack: () => Navigator.pop(context),
+              onOpenTaskDetails: (task) {
+                _navigateTo(
+                  TaskDetailsScreen(
+                    task: task,
+                    onBack: () => Navigator.pop(context),
+                    onEdit: (t) {},
+                    onDelete: (t) {},
+                    onOpenComments: () {
+                      CommentsBottomSheet.show(context, task);
+                    },
+                  ),
+                );
+              },
+              onAddTask: () {
+                _navigateTo(
+                  AddEditTaskScreen(
+                    onBack: () => Navigator.pop(context),
+                    onSave: (saved) {},
+                  ),
+                );
+              },
+            ),
+          );
+        },
+        onOpenTaskDetails: (task) {
+          _navigateTo(
+            TaskDetailsScreen(
+              task: task,
+              onBack: () => Navigator.pop(context),
+              onEdit: (t) {
+                Navigator.pop(context);
+                _navigateTo(
+                  AddEditTaskScreen(
+                    initialTask: t,
+                    onBack: () => Navigator.pop(context),
+                    onSave: (saved) {},
+                  ),
+                );
+              },
+              onDelete: (t) {},
+              onOpenComments: () {
+                CommentsBottomSheet.show(context, task);
+              },
+            ),
+          );
+        },
+        onAddTask: () {
+          _navigateTo(
+            AddEditTaskScreen(
+              onBack: () => Navigator.pop(context),
+              onSave: (saved) {},
+            ),
+          );
+        },
+        onOpenNightReview: () {
+          _navigateTo(
+            NightReviewScreen(
+              onBack: () => Navigator.pop(context),
+            ),
+          );
+        },
+        onOpenComments: (task) {
+          CommentsBottomSheet.show(context, task);
+        },
+      ),
+
+      // 1: Goals Screen (S4)
+      GoalsListScreen(
+        goals: _goals,
+        onOpenGoal: (goal) {
+          _navigateTo(
+            GoalDetailsScreen(
+              goal: goal,
+              onBack: () => Navigator.pop(context),
+              onEditGoal: (g) {
+                Navigator.pop(context);
+                _navigateTo(
+                  AddEditGoalScreen(
+                    initialGoal: g,
+                    onBack: () => Navigator.pop(context),
+                    onSave: (saved) {},
+                  ),
+                );
+              },
+              onDeleteGoal: (g) {},
+              onAddTaskForGoal: () {
+                _navigateTo(
+                  AddEditTaskScreen(
+                    onBack: () => Navigator.pop(context),
+                    onSave: (saved) {},
+                  ),
+                );
+              },
+              onOpenTaskDetails: (task) {
+                _navigateTo(
+                  TaskDetailsScreen(
+                    task: task,
+                    onBack: () => Navigator.pop(context),
+                    onEdit: (t) {},
+                    onDelete: (t) {},
+                    onOpenComments: () {
+                      CommentsBottomSheet.show(context, task);
+                    },
+                  ),
+                );
+              },
+            ),
+          );
+        },
+        onAddGoal: () {
+          _navigateTo(
+            AddEditGoalScreen(
+              onBack: () => Navigator.pop(context),
+              onSave: (saved) {},
+            ),
+          );
+        },
+      ),
+
+      // 2: Namaz Screen (S8)
+      const NamazScreen(),
+
+      // 3: User 2 Screen (S9)
+      User2Screen(
+        onLockStatusChanged: () {
+          setState(() {
+            _isUser2Locked = !_isUser2Locked;
+          });
+        },
+      ),
+    ];
+
+    return AppShell(
+      selectedIndex: _selectedTabIndex,
+      isUser2Locked: _isUser2Locked,
+      onItemSelected: (index) {
+        setState(() {
+          _selectedTabIndex = index;
+        });
+      },
+      child: screens[_selectedTabIndex],
     );
   }
 }
