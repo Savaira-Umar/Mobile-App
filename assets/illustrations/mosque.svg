@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none">
+  <!-- Soft mosque illustration with dome, minarets, crescent and subtle leaves -->
+  <!-- Base arch and walls -->
+  <rect x="25" y="55" width="70" height="40" rx="4" fill="#EBF2FF"/>
+  <!-- Central Arch door -->
+  <path d="M48 95 V 72 C 48 66 72 66 72 72 V 95 Z" fill="#3B6FE0" opacity="0.15"/>
+  <!-- Central Dome -->
+  <path d="M35 55 C 35 32, 60 22, 60 16 C 60 22, 85 32, 85 55 Z" fill="#4B86F2" opacity="0.85"/>
+  <!-- Crescent finial on dome -->
+  <path d="M60 8 C 58 8, 56 10, 56 13 C 56 15, 58 17, 60 17 C 58 17, 57 15, 57 13 C 57 11, 58 9, 60 8 Z" fill="#FFC93C" stroke="#FFC93C" stroke-width="0.8"/>
+  <line x1="60" y1="14" x2="60" y2="17" stroke="#FFC93C" stroke-width="1.5"/>
+  <!-- Left Minaret -->
+  <rect x="18" y="32" width="8" height="63" rx="2" fill="#DCE8FD"/>
+  <path d="M16 32 C 16 24 22 18 22 18 C 22 18 28 24 28 32 Z" fill="#4B86F2" opacity="0.7"/>
+  <!-- Right Minaret -->
+  <rect x="94" y="32" width="8" height="63" rx="2" fill="#DCE8FD"/>
+  <path d="M92 32 C 92 24 98 18 98 18 C 98 18 104 24 104 32 Z" fill="#4B86F2" opacity="0.7"/>
+  <!-- Subtle decorative leaf sprig at top right -->
+  <path d="M96 16 C 105 10 115 12 118 6 C 114 14 106 18 96 16 Z" fill="#98D8A0"/>
+</svg>

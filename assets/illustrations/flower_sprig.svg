@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120" fill="none">
+  <!-- Delicate botanical stem with soft green leaves and blue floral blossoms -->
+  <path d="M20 110 C 25 80, 40 50, 60 20" stroke="#7BAE87" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Leaf 1 -->
+  <path d="M30 85 C 15 80, 10 70, 20 65 C 28 65, 32 75, 30 85 Z" fill="#98D8A0" opacity="0.85"/>
+  <!-- Leaf 2 -->
+  <path d="M40 65 C 55 60, 58 48, 50 45 C 42 45, 38 55, 40 65 Z" fill="#7BAE87" opacity="0.85"/>
+  <!-- Leaf 3 -->
+  <path d="M48 45 C 36 38, 35 26, 45 25 C 52 26, 52 35, 48 45 Z" fill="#98D8A0" opacity="0.85"/>
+  <!-- Flower 1 (Blue) -->
+  <circle cx="62" cy="18" r="8" fill="#4B86F2" opacity="0.9"/>
+  <circle cx="62" cy="18" r="3.5" fill="#FFF4BD"/>
+  <!-- Flower 2 (Soft Blue) -->
+  <circle cx="28" cy="62" r="5" fill="#78A5F8" opacity="0.85"/>
+  <circle cx="28" cy="62" r="2" fill="#FFF4BD"/>
+  <!-- Flower 3 (Small bud) -->
+  <circle cx="52" cy="38" r="4" fill="#93B8F8" opacity="0.8"/>
+</svg>

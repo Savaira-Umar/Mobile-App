@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 70" fill="none">
+  <!-- Blue person (left) -->
+  <circle cx="42" cy="24" r="10" fill="#3B6FE0"/>
+  <path d="M28 58 C 28 44, 34 40, 42 40 C 50 40, 56 44, 56 58 Z" fill="#3B6FE0"/>
+  
+  <!-- Pink person (right) -->
+  <circle cx="78" cy="24" r="10" fill="#E86C8D"/>
+  <path d="M64 58 C 64 44, 70 40, 78 40 C 86 40, 92 44, 92 58 Z" fill="#E86C8D"/>
+  
+  <!-- Sweet little heart between them -->
+  <path d="M60 22 C 60 18, 55 15, 52 18 C 49 21, 60 28, 60 28 C 60 28, 71 21, 68 18 C 65 15, 60 18, 60 22 Z" fill="#FF4D6D"/>
+</svg>

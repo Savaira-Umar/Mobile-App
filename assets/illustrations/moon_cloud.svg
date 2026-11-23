@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none">
+  <!-- Soft crescent moon on fluffy cloud with twinkling stars -->
+  <!-- Cloud -->
+  <path d="M22 64 C 14 64, 8 58, 8 50 C 8 43, 14 38, 20 38 C 22 28, 32 22, 42 24 C 48 18, 58 18, 64 24 C 72 25, 78 32, 78 40 C 84 42, 88 48, 88 54 C 88 60, 83 64, 76 64 Z" fill="#EEF2FF" stroke="#D3DCFB" stroke-width="1.5"/>
+  <!-- Crescent Moon -->
+  <path d="M56 12 C 48 14, 42 22, 44 32 C 46 40, 52 46, 60 48 C 50 49, 40 42, 38 31 C 36 21, 44 13, 56 12 Z" fill="#FFD15C"/>
+  <!-- Star 1 -->
+  <polygon points="76,14 78,19 83,19 79,22 81,27 76,24 71,27 73,22 69,19 74,19" fill="#FFDD80"/>
+  <!-- Star 2 -->
+  <polygon points="26,18 27,21 30,21 28,23 29,26 26,24 23,26 24,23 22,21 25,21" fill="#FFDD80"/>
+</svg>

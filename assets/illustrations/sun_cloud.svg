@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" fill="none">
+  <!-- Sun with rays -->
+  <circle cx="65" cy="35" r="20" fill="#FFC93C" />
+  <g stroke="#FFAE19" stroke-width="2.5" stroke-linecap="round">
+    <line x1="65" y1="8" x2="65" y2="2" />
+    <line x1="84" y1="16" x2="88" y2="12" />
+    <line x1="92" y1="35" x2="98" y2="35" />
+    <line x1="84" y1="54" x2="88" y2="58" />
+  </g>
+  <!-- Soft fluffy Cloud -->
+  <path d="M22 62 C 14 62, 8 56, 8 48 C 8 41, 14 36, 20 36 C 22 26, 32 20, 42 22 C 48 16, 58 16, 64 22 C 72 23, 78 30, 78 38 C 84 40, 88 46, 88 52 C 88 58, 83 62, 76 62 Z" fill="#E8F1FF" stroke="#C7DCFF" stroke-width="1.5"/>
+</svg>
